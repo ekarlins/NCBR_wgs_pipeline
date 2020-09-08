@@ -134,6 +134,6 @@ fi
 
 if [ "$3" == "process" ]
 then
-    snakemake --stats snakemake.stats --restart-times 1 --rerun-incomplete -j 5000 --cluster "$CLUSTER_OPTS" --cluster-config NCBR_wgs_pipeline/covid_wgs_cluster.json --keep-going --snakefile ${DIR}/"$RUNFILE" > wgs_batch_processing.log 2>&1
+    snakemake --stats snakemake.stats --restart-times 1 --rerun-incomplete -j 5000 --cluster "$CLUSTER_OPTS" --cluster-config NCBR_wgs_pipeline/ncbr_wgs_cluster.json --keep-going --snakefile ${DIR}/"$RUNFILE" > wgs_batch_processing.log 2>&1
     #snakemake --stats snakemake.stats --restart-times 1 --rerun-incomplete -j 100  --cluster "$CLUSTER_OPTS" --cluster-config ${DIR}/cluster.json --keep-going --snakefile ${DIR}/csi_batch_processing.snakemake > csi_batch_processing.log 2>&1 &
 fi
