@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #################################
 #
 # snakefile for converting CIDR Sequencing data deliveries to non-PII ready for GRIS upload, running QC, and joint genotyping
@@ -135,10 +136,10 @@ rule mergegvcfs:
     input: list = "gVCFs/gVCFs.{chunks}.list",
            gzvcf = expand("gVCFs/{newID}.{{chunks}}.g.vcf.gz",newID=list(dict_CIDR.keys())),
            index = expand("gVCFs/{newID}.{{chunks}}.g.vcf.gz.tbi",newID=list(dict_CIDR.keys())),
-           prev = "/data/GRIS_NCBR/COVID_WGS/hg38_gvcfs/cumulative/through_batch" + last_batch + "_{chunks}.g.vcf.gz"
+           prev = "../cumulative/through_batch" + last_batch + "_{chunks}.g.vcf.gz"
     output:
-        gzvcf = "/data/GRIS_NCBR/COVID_WGS/hg38_gvcfs/cumulative/through_batch" + batch_number + "_{chunks}.g.vcf.gz",
-        index = "/data/GRIS_NCBR/COVID_WGS/hg38_gvcfs/cumulative/through_batch" + batch_number + "_{chunks}.g.vcf.gz.tbi",
+        gzvcf = "../cumulative/through_batch" + batch_number + "_{chunks}.g.vcf.gz",
+        index = "../cumulative/through_batch" + batch_number + "_{chunks}.g.vcf.gz.tbi",
     params: 
         rname = "mergegvcfs",genome = config['references']['GENOME'], chunk="{chunks}", batch=batch_name
     shell:
