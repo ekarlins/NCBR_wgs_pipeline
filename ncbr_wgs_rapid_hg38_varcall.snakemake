@@ -107,12 +107,12 @@ rule mergegvcfs:
         rname = "mergegvcfs",genome = config['references']['GENOME'], chunk="{chunks}", batch=batch_name
     run:
         if input.prev == "":
-            shell("cp {input.gzvcf} {output.gzvcf};cp {input.index} {output.index}"
+            shell("cp {input.gzvcf} {output.gzvcf};cp {input.index} {output.index}")
         else:
             cmd = """
-        module load GATK/4.1.4.1
-        mkdir -p gVCFs/merged
-        gatk --java-options '-Xmx24g' CombineGVCFs --reference {params.genome} --annotation-group StandardAnnotation --annotation-group AS_StandardAnnotation --variant {input.list} --variant {input.prev} --output {output.gzvcf} --intervals {params.chunk} --use-jdk-inflater --use-jdk-deflater
+            module load GATK/4.1.4.1
+            mkdir -p gVCFs/merged
+            gatk --java-options '-Xmx24g' CombineGVCFs --reference {params.genome} --annotation-group StandardAnnotation --annotation-group AS_StandardAnnotation --variant {input.list} --variant {input.prev} --output {output.gzvcf} --intervals {params.chunk} --use-jdk-inflater --use-jdk-deflater
             """
             shell(cmd)
 
