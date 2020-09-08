@@ -17,9 +17,9 @@ echo "Running script from ${DIR}"
 ##
 ## Test commandline arguments
 ##
-if [ $# -ne 3 ]; then
+if [ $# -ne 4 ]; then
     echo " " 
-    echo "Requires a raw data directory, processing type: align, varcall, or qc and run argument: gris, npr, or process"
+    echo "Requires a raw data directory, processing type: align, varcall, or qc and run argument: gris, npr, or process and build: hg19 or hg38"
     echo " " 
     exit
 fi
@@ -114,17 +114,17 @@ CLUSTER_OPTS="sbatch --gres {cluster.gres} --qos=cv19 --cpus-per-task {cluster.t
 #CLUSTER_OPTS_HIMEM="qsub -e snakejobs_himem -o snakejobs_himem -pe threaded 8 -l himem -l h_vmem=32G -l virtual_free=32G -wd $batchdir"
 if [ "$2" == "align" ]
 then
-    RUNFILE="covid_wgs_rapid_$4_align.snakemake"
+    RUNFILE="ncbr_wgs_rapid_$4_align.snakemake"
 fi
 
 if [ "$2" == "varcall" ]
 then
-    RUNFILE="covid_wgs_rapid_$4_varcall.snakemake"
+    RUNFILE="ncbr_wgs_rapid_$4_varcall.snakemake"
 fi
 
 if [ "$2" == "qc" ]
 then
-    RUNFILE="covid_wgs_rapid_$4_qc.snakemake"
+    RUNFILE="ncbr_wgs_rapid_$4_qc.snakemake"
 fi
 
 if [ "$3" == "npr" ]
