@@ -108,7 +108,7 @@ fi
 echo "Run snakemake"
 
 #CLUSTER_OPTS="qsub -e snakejobs -o snakejobs -wd $batchdir"
-CLUSTER_OPTS="sbatch --gres {cluster.gres} --qos=cv19 --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name={params.rname} -e snakejobs/slurm-%j_{params.rname}.out -o snakejobs/slurm-%j_{params.rname}.out --chdir=$batchdir"
+CLUSTER_OPTS="sbatch --gres {cluster.gres} --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name={params.rname} -e snakejobs/slurm-%j_{params.rname}.out -o snakejobs/slurm-%j_{params.rname}.out --chdir=$batchdir"
 #CLUSTER_OPTS="qsub -e snakejobs -o snakejobs -pe threaded {cluster.threads} -l {cluster.partition} -l h_vmem={cluster.vmem} -l mem_free={cluster.mem} -wd $batchdir"
 #CLUSTER_OPTS="qsub -e snakejobs -o snakejobs -pe threaded {cluster.threads} -l {cluster.partition} -cwd"
 #CLUSTER_OPTS_HIMEM="qsub -e snakejobs_himem -o snakejobs_himem -pe threaded 8 -l himem -l h_vmem=32G -l virtual_free=32G -wd $batchdir"
